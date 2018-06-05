@@ -36,3 +36,7 @@ gem 'jquery-rails'
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem "bulma-rails", "~> 0.7.1"
 gem 'petergate', '~> 1.8', '>= 1.8.1'
+gem 'dotenv-rails', '~> 2.4'
+gem 'carrierwave', '~> 1.2', '>= 1.2.2'
+gem 'carrierwave-aws', '~> 1.0'
+gem 'carrierwave', '~> 1.2', '>= 1.2.2'
