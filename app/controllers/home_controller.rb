@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  access all: [:about, :index]
+  access site_admin: :all
 
   def index
     @page_title = "Home Page"

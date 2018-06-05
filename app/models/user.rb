@@ -17,7 +17,7 @@ class User < ApplicationRecord
   mount_uploader :signature, SignatureUploader
 
   def first_name
-  self.name.split.first
+    self.name.split.first
   end
 
   def last_name
