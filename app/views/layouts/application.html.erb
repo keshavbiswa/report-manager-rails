@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= @page_title %> - North East Diagnostic and Research Centre</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+
+    <%= render "shared/navbar" %>
+
+    <div class="container body-content">
+
+        <%= yield %>
+
+        <hr />
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>&copy; <%= Time.current.year %> - North East Diagnostic and Research Centre</p>
+        </div>
+      </footer>
+    </div>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> 
+</body>
+</html>
