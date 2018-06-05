@@ -4,6 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= @page_title %> - North East Diagnostic and Research Centre</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
@@ -11,7 +14,7 @@
     <%= render "shared/navbar" %>
 
     <% if notice %>
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-primary" role="alert">
         <%= notice %>
       </div>
     <% elsif alert %>    
@@ -21,11 +24,8 @@
     <% end %>
 
     <div class="container body-content">
-
-        <%= yield %>
-
-        <hr />
-
+      <%= yield %>
+      <hr />
       <footer class="mastfoot mt-auto">
         <div class="inner">
           <p>&copy; <%= Time.current.year %> - North East Diagnostic and Research Centre</p>
