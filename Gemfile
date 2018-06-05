@@ -35,3 +35,4 @@ gem 'bootstrap', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem "bulma-rails", "~> 0.7.1"
+gem 'petergate', '~> 1.8', '>= 1.8.1'

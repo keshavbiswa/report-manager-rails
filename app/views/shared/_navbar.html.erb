@@ -11,15 +11,19 @@
       <li class="nav-item">
         <%= link_to "About", home_about_path, class: 'nav-link' %>
       </li>
-      <li class="nav-item">
-        <%= link_to "Manage Users", root_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Manage Reports", root_path, class: "nav-link" %>
-      </li>
+      <% if logged_in?(:site_admin) %>
+        <li class="nav-item">
+          <%= link_to "Manage Users", root_path, class: "nav-link" %>
+        </li>
+      <% end %>
+      <% unless logged_in?(:site_admin, :doctors) %>
+        <li class="nav-item">
+          <%= link_to "Manage Reports", root_path, class: "nav-link" %>
+        </li>
+      <% end %>
     </ul>
-    <span class="navbar-nav float-right">
-      <%=login_helper 'nav-link' %>
-    </span>
+    <ul class="navbar-nav ml-auto">
+      <%= login_helper 'nav-link' %>
+    </ul>
   </div>
 </nav>
