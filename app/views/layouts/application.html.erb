@@ -3,6 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
     <title><%= @page_title %> - North East Diagnostic and Research Centre</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
@@ -11,11 +14,11 @@
     <%= render "shared/navbar" %>
 
     <% if notice %>
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-info" role="alert">
         <%= notice %>
       </div>
     <% elsif alert %>    
-      <div class="alert alert-info" role="alert">
+      <div class="alert alert-warning" role="alert">
         <%= alert %>
       </div>
     <% end %>
