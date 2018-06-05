@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'admin/index'
-  get 'admin/delete'
-  get 'admin/show'
+  resources :admin, only: [:index, :show, :destroy]
   devise_for :users
   root 'home#index'
   get 'home/about'

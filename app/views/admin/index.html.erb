@@ -8,6 +8,7 @@
       <th scope="col">Email </th>
       <th scope ="col">Roles</th>
       <th scope = "col">Signature</th>
+      <th scope = "col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -17,10 +18,16 @@
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
         <td><%= user.email %></td>
-        <td><%= user.roles %></td>
+        <td><%= roles_helper user %></td>
         <td>
           <% if user.signature %>
             <%= image_tag "#{user_signature(user.signature, 'signature')}", width: '100px' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "Details", admin_path(user), class: 'btn btn-outline-secondary'%>
+          <% unless user.has_roles?(:site_admin) %>
+            <%= link_to "Delete", admin_path(user), method: :delete, class: 'btn btn-outline-danger', data: {confirm: "Are you sure you want to delete #{user.name}'s account?"} %>
           <% end %>
         </td>
       </tr>
