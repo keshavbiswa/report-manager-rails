@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= @page_title %></title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <section class="section">
+    <% if notice %>
+        <div class="alert alert-info" role="alert">
+          <%= notice %>
+        </div>
+      <% elsif alert %>    
+        <div class="alert alert-danger" role="alert">
+          <%= alert %>
+        </div>
+      <% end %>
+    <div class="container card-container">
+      <%= yield %>
+    </div>
+  </section>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> 
+</body>
