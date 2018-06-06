@@ -1,4 +1,4 @@
-class SignatureUploader < CarrierWave::Uploader::Base
+class ReportUploader < CarrierWave::Uploader::Base
 
   storage :aws
 
