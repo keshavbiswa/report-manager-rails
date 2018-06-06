@@ -32,8 +32,9 @@
           <% end %>
         </td>
         <td>
-          <%= link_to "Details", report_path(report), class: 'btn btn-outline-secondary'%>
-          <% unless current_user.has_roles?(:site_admin) %>
+          <a href="<%= report.content %>" class="btn btn-outline-secondary">View Report</a>
+          <%= link_to "Edit", edit_report_path(report), class: 'btn btn-outline-secondary' %>
+          <% if current_user.has_roles?(:site_admin) %>
             <%= link_to "Delete", report_path(report), method: :delete, class: 'btn btn-outline-danger', data: {confirm: "Are you sure you want to delete #{report.name}?"} %>
           <% end %>
         </td>

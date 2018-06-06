@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
-  before_action :set_report, only: [:edit, :update, :show, :destroy]
+  before_action :set_report, only: [:edit, :update, :destroy]
 
-  access user: {except: [:destroy, :new, :create, :update, :edit]}, site_admin: :all
+  access user: [:index], site_admin: :all
   
   def index
     @reports = Report.all
@@ -32,15 +32,12 @@ class ReportsController < ApplicationController
     respond_to do |format|
       if @report.update(report_params)
         format.html { redirect_to reports_path, notice: 'The record was successfully updated.' }
-        format.json { render :show, status: :ok, location: @portfolio_item }
+        format.json { render :show, status: :ok, location: @report }
       else
         format.html { render :edit }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
     end     
-  end
-
-  def show
   end
 
   def destroy
@@ -58,7 +55,7 @@ class ReportsController < ApplicationController
       params.require(:report).permit(:name, :content, :approved)
     end
 
-    def set_portfolio_item
+    def set_report
       @report = Report.find(params[:id])
     end
 end
