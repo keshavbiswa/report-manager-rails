@@ -1,0 +1,23 @@
+<% @page_title = "Edit Report" %>
+<div class="card mx-auto my-5" style="width: 30rem">
+  <h2 class="card-title mt-4 ml-2">New Report</h2>
+
+  <div class="card-body">
+    <%= form_for @report, html: { multipart: true } do |f| %>
+      <div class="form-group">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <label class="btn btn-primary">
+          Upload your pdf file <%= f.file_field :content, style: 'display:none;' %>
+        </label>
+      </div>
+      
+      <div class="form-group">
+        <%= f.submit "Update", class: 'btn btn-primary btn-lg btn-block' %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
   validates_presence_of :name
 
+  has_many :reports
+
   mount_uploader :signature, SignatureUploader
 
   def first_name
