@@ -21,6 +21,9 @@
             Approved
           <% else %>
             Not Approved Yet
+            <%if current_user.has_roles?(:doctors) %>
+              <%= link_to "Approve", approve_report_path(report), class: "btn btn-primary"%>
+            <% end %>
           <% end %>
         </td>
         <td><%= report.created_at.strftime("%B %d, %Y") %></td>
