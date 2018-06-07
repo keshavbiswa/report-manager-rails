@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:edit, :update, :destroy, :approve]
 
-  access user: [:index], site_admin: :all, doctors: [:index, :approve]
+  access user: [:index], site_admin: {except: [:approve]}, doctors: [:index, :approve]
   
   def index
     @reports = Report.all
@@ -61,6 +61,12 @@ class ReportsController < ApplicationController
   end
 
   def approve
+    if @report.approved == true
+      respond_to do |format|
+        format.html { redirect_to reports_url, notice: 'Report has already been approved.' }
+      end
+    end
+
     io = open(@report.content.to_s)
     doc = HexaPDF::Document.open(io)
     page = doc.pages[0]
