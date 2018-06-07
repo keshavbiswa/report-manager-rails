@@ -12,7 +12,18 @@ class ReportsController < ApplicationController
   end
 
   def create
+    # Make an object in your bucket for your upload
+    obj = AWS::S3.new.buckets[ENV['S3_BUCKET_NAME']].objects[params[:report][:file].original_filename]
+    
+    # Upload the file
+    obj.write(
+      file: params[:report][:file],
+      acl: :public_read
+    )
+    
     @report = Report.new(report_params)
+    
+    @report.content = obj.public_url
 
     respond_to do |format|
       if @report.save
@@ -51,31 +62,24 @@ class ReportsController < ApplicationController
 
   def approve
     io = open(@report.content.to_s)
-    # reader = PDF::Reader.new(io)
-    # puts reader.inspect
-
-    # image = open(current_user.signature.to_s)
-    # pdf = PDF::Stamper.new(image) 
-    # pdf.text :first_name, "Jason"
-    # pdf.text :last_name, "Yates" 
-    # send_data(pdf.to_s, :filename => "output.pdf", :type => "application/pdf",:disposition => "inline")
-
     doc = HexaPDF::Document.open(io)
     page = doc.pages[0]
     canvas = page.canvas(type: :overlay)
-
     canvas.translate(0, 20) do
-      # canvas.fill_color(0.3, 0.7, 0.7)
-      # canvas.rectangle(50, 0, 80, 80, radius: 80)
-      # canvas.fill
-
-      # solid = canvas.graphic_object(:solid_arc, cx: 190, cy: 40, inner_a: 20, inner_b: 15,
-      #                               outer_a: 40, outer_b: 30, start_angle: 10, end_angle: 130)
-      img = open(current_user.signature.to_s)
-      # canvas.line_width(0.5)  
-      canvas.image(File.join(img), at: [400, 0], height: 80)
+      img = open(current_user.signature.to_s)  
+      canvas.image(File.join(img), at: [550, 20], height: 80)
     end
-    doc.write('graphics.pdf', optimize: true)
+
+    doc.write("graphics.pdf", optimize: true)
+    obj = AWS::S3.new.buckets[ENV['S3_BUCKET_NAME']].objects["reports/#{@report.id}/#{@report.name}"]
+
+    obj.write(
+      file: "graphics.pdf",
+      acl: :public_read
+    )
+    File.delete("graphics.pdf") if File.exist?("graphics.pdf")
+    @report.update!(content: obj.public_url, approved: true)
+    @report.save
   end 
   
   private 
