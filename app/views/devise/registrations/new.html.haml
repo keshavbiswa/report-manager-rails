@@ -1,0 +1,24 @@
+- @page_title = "Sign Up"
+.card.mx-auto.my-5{:style => "width: 30rem"}
+  %h2.card-title.mt-4.ml-2 Sign Up
+  .card-body
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = devise_error_messages!
+      .form-group
+        = f.label :name
+        %br/
+        = f.text_field :name, autofocus: true, class: 'form-control'
+      .form-group
+        = f.label :email
+        = f.email_field :email, autocomplete: "email", class: 'form-control'
+      .form-group
+        = f.label :password
+        = f.password_field :password, autocomplete: "off", class: 'form-control', data:{toggle: "tooltip", placement: "top"}, title: "#{@minimum_password_length} characters minimum"
+      .form-group
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+      .form-group
+        %label.btn.btn-primary
+          Upload your signature file #{f.file_field :signature, style: 'display:none;'}
+      .form-group
+        = f.submit "Sign up", class: 'btn btn-primary btn-lg btn-block'

@@ -642,8 +642,6 @@ GEM
       popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
     builder (3.2.3)
-    bulma-rails (0.7.1)
-      sass (~> 3.2)
     byebug (10.0.2)
     capybara (3.2.1)
       addressable
@@ -689,6 +687,9 @@ GEM
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    haml (5.0.4)
+      temple (>= 0.8.0)
+      tilt
     hexapdf (0.6.0)
       cmdparse (~> 3.0, >= 3.0.3)
     i18n (1.0.1)
@@ -798,6 +799,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    temple (0.8.0)
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -828,7 +830,6 @@ DEPENDENCIES
   aws-sdk (~> 3.0, >= 3.0.1)
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.1.0)
-  bulma-rails (~> 0.7.1)
   byebug
   capybara (>= 2.15, < 4.0)
   carrierwave (~> 1.2, >= 1.2.2)
@@ -837,6 +838,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise (~> 4.4, >= 4.4.3)
   dotenv-rails (~> 2.4)
+  haml (~> 5.0, >= 5.0.4)
   hexapdf (~> 0.6.0)
   jbuilder (~> 2.5)
   jquery-rails

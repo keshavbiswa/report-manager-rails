@@ -1,0 +1,18 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  = link_to "Report Manager", root_path, class: "navbar-brand"
+  %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNav", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #navbarNav.collapse.navbar-collapse
+    %ul.navbar-nav
+      %li.nav-item.active
+        = link_to "Home", root_path, class: 'nav-link'
+      %li.nav-item
+        = link_to "About", home_about_path, class: 'nav-link'
+      - if logged_in?(:site_admin)
+        %li.nav-item
+          = link_to "Manage Users", admin_index_path, class: "nav-link"
+      - if logged_in?(:site_admin, :doctors)
+        %li.nav-item
+          = link_to "Manage Reports", reports_path, class: "nav-link"
+    %ul.navbar-nav.ml-auto
+      = login_helper 'nav-link'

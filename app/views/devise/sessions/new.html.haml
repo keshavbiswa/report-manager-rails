@@ -1,0 +1,18 @@
+- @page_title = "Login"
+.card.mx-auto.my-5{:style => "width: 30rem"}
+  %h2.card-title.mt-4.ml-2 Log in
+  .card-body
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .form-group
+        = f.label :email
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+      .form-group
+        = f.label :password
+        = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: ""
+      - if devise_mapping.rememberable?
+        .custom-control.custom-checkbox
+          = f.check_box :remember_me, class: 'custom-control-input'
+          = f.label :remember_me, class: 'custom-control-label'
+      .form-group
+        = f.submit "Log in", class: 'btn btn-primary btn-lg btn-block'
+    = render "devise/shared/links"

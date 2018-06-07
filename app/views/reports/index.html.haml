@@ -1,0 +1,34 @@
+- @page_title = "Reports"
+%h2 Index
+%table.table.table-dark
+  %thead
+    %tr
+      %th{:scope => "col"} #
+      %th{:scope => "col"} Name
+      %th{:scope => "col"} Approved
+      %th{:scope => "col"} Date Created
+      %th{:scope => "col"} Assigned To
+      %th{:scope => "col"} Actions
+  %tbody
+    - @reports.each do |report|
+      %tr
+        %th{:scope => "row"}= report.id
+        %td= report.name
+        %td
+          - if report.approved
+            Approved
+          - else
+            Not Approved Yet
+            - if current_user.has_roles?(:doctors)
+              = link_to "Approve", approve_report_path(report), class: "btn btn-primary"
+        %td= report.created_at.strftime("%B %d, %Y")
+        %td
+          - if report.user
+            = report.user
+          - else
+            Not assigned to anyone yet
+        %td
+          %a.btn.btn-outline-secondary{:href => "#{report.content}"} View Report
+          = link_to "Edit", edit_report_path(report), class: 'btn btn-outline-secondary'
+          - if current_user.has_roles?(:site_admin)
+            = link_to "Delete", report_path(report), method: :delete, class: 'btn btn-outline-danger', data: {confirm: "Are you sure you want to delete #{report.name}?"}
