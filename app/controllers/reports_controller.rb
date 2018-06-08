@@ -73,7 +73,15 @@ class ReportsController < ApplicationController
     canvas = page.canvas(type: :overlay)
     canvas.translate(0, 20) do
       img = open(current_user.signature.to_s)  
-      canvas.image(File.join(img), at: [550, 20], height: 80)
+      puts "img is a #{img.class}"
+      if img.class == StringIO
+        file = Tempfile.new(['temp','.png'])
+        file.binmode
+        file.write img.read
+        canvas.image(File.join(file), at: [30, 250], width: 70, height: 50)
+      else
+        canvas.image(File.join(img), at: [30, 250], width: 70, height: 50)
+      end
     end
 
     doc.write("graphics.pdf", optimize: true)
