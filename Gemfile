@@ -34,9 +34,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'devise', '~> 4.4', '>= 4.4.3'
-gem "bulma-rails", "~> 0.7.1"
 gem 'petergate', '~> 1.8', '>= 1.8.1'
 gem 'dotenv-rails', '~> 2.4'
 gem 'carrierwave', '~> 1.2', '>= 1.2.2'
 gem 'carrierwave-aws', '~> 1.0'
 gem 'carrierwave', '~> 1.2', '>= 1.2.2'
+gem 'hexapdf', '~> 0.6.0'
+gem 'open-uri-s3', '~> 1.6'
+gem 'aws-sdk', '~> 3.0', '>= 3.0.1'
+gem 'haml', '~> 5.0', '>= 5.0.4'

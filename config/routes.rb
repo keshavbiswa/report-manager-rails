@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :reports
+  resources :reports, except: [:show] do
+    member do
+      get :approve
+    end
+  end
   resources :admin, only: [:index, :show, :destroy]
   devise_for :users
   root 'home#index'

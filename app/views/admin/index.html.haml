@@ -1,0 +1,26 @@
+%h2 Index
+%table.table.table-dark
+  %thead
+    %tr
+      %th{:scope => "col"} #
+      %th{:scope => "col"} First Name
+      %th{:scope => "col"} Last Name
+      %th{:scope => "col"} Email
+      %th{:scope => "col"} Roles
+      %th{:scope => "col"} Signature
+      %th{:scope => "col"} Actions
+  %tbody
+    - @users.each do |user|
+      %tr
+        %th{:scope => "row"}= user.id
+        %td= user.first_name
+        %td= user.last_name
+        %td= user.email
+        %td= roles_helper user
+        %td
+          - if user.signature
+            = image_tag "#{user_signature(user.signature, 'signature')}", width: '100px'
+        %td
+          = link_to "Details", admin_path(user), class: 'btn btn-outline-secondary'
+          - unless user.has_roles?(:site_admin)
+            = link_to "Delete", admin_path(user), method: :delete, class: 'btn btn-outline-danger', data: {confirm: "Are you sure you want to delete #{user.name}'s account?"}
