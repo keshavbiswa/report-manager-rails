@@ -4,7 +4,7 @@ class ReportsController < ApplicationController
   access user: [:index], site_admin: {except: [:approve]}, doctors: [:index, :approve]
   
   def index
-    @reports = Report.all
+    @reports = Report.page(params[:page]).per(4)
   end
 
   def new
