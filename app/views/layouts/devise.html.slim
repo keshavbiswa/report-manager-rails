@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta charset="utf-8" /
+    meta content="width=device-width, initial-scale=1.0" name="viewport" /
+    = csrf_meta_tags
+    = csp_meta_tag
+    title
+      = @page_title
+      |  - Keshav Biswa
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    section.section
+      - if notice
+        .alert.alert-info role="alert" 
+          = notice
+      - elsif alert
+        .alert.alert-danger role="alert" 
+          = alert
+      .container.card-container
+        = yield
